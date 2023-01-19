@@ -10,10 +10,12 @@ class Tag extends Model
 {
     use HasFactory;
 
+    //Tag Name
     protected $fillable = [
         'name'
     ];
 
+    //Tag Name -> lowercase and Slug
     public function getSlugAttribute(){
         return Str::slug($this->name, '-');
     }

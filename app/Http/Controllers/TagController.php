@@ -7,15 +7,16 @@ use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
+    //Add Tag
     public function store(Request $request){
 
         $request->validate(['name' => 'required']);
         
         Tag::create($request->all());
         return redirect('/');
-        
     }
     
+    //Destroy Tag
     public function destroy(Tag $tag){
 
         $tag->delete();

@@ -11,29 +11,33 @@ class TagControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    //Add Tag
     public function testStore()
     {
         //$this->withoutExceptionHandling();
-        $this->post('tags', ['name' => 'PHP'])->assertRedirect('/');
 
-        $this->assertDatabaseHas('tags',['name' => 'PHP'] );
+        $this->post('tags', ['name' => 'PHP'])->assertRedirect('/'); //Add Tag and Redirect to Welcome view
+
+        $this->assertDatabaseHas('tags',['name' => 'PHP'] ); //Look up this Tag in the Database
     }
 
+    //Destroy Tag
     public function testDestroy()
     {
         //$this->withoutExceptionHandling();
 
+        //new Tag
         $tag = Tag::factory()->create();
 
-        $this->delete("tags/$tag->id")->assertRedirect('/');
+        $this->delete("tags/$tag->id")->assertRedirect('/'); //Delete Tag and Redirect to welcome view
 
-
-        $this->assertDatabaseMissing('tags',['name' => $tag->name] );
+        $this->assertDatabaseMissing('tags',['name' => $tag->name] ); //Check that this Tag is not in the Database
 
     }
 
+    //Add Tag Empty
     public function testValidateStore(){
 
-        $this->post('tags', ['name' => ''])->assertSessionHasErrors('name');
+        $this->post('tags', ['name' => ''])->assertSessionHasErrors('name'); //Valite Error with Tag Name empty
     }
 }

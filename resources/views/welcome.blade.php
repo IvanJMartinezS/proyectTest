@@ -64,7 +64,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td><p>No hay etiquetas</p></td>
+                        <td><p>No hay Etiquetas</p></td>
                     </tr>
                 @endforelse
                 </tbody>
